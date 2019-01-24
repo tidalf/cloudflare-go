@@ -108,7 +108,7 @@ func dnsCreateOrUpdate(c *cli.Context) {
 				rr.Content = content
 				rr.TTL = ttl
 				rr.Proxied = proxy
-				resp, err := api.UpdateDNSRecord(zoneID, r.ID, rr)
+				err := api.UpdateDNSRecord(zoneID, r.ID, rr)
 				if err != nil {
 					fmt.Println("Error updating DNS record:", err)
 				}
@@ -127,12 +127,12 @@ func dnsCreateOrUpdate(c *cli.Context) {
 		}
 
 	}
-
-	output := [][]string{
-		formatDNSRecord(resp.Result),
+	if (resp.Result != nil) {
+		output := [][]string{
+			formatDNSRecord(resp.Result)
+		}
+		writeTable(output, "ID", "Name", "Type", "Content", "TTL", "Proxiable", "Proxy", "Locked")
 	}
-
-	writeTable(output, "ID", "Name", "Type", "Content", "TTL", "Proxiable", "Proxy", "Locked")
 }
 
 func dnsUpdate(c *cli.Context) {
