@@ -129,7 +129,7 @@ func dnsCreateOrUpdate(c *cli.Context) {
 	}
 	if (resp.Result != nil) {
 		output := [][]string{
-			formatDNSRecord(resp.Result)
+			formatDNSRecord(resp.Result),
 		}
 		writeTable(output, "ID", "Name", "Type", "Content", "TTL", "Proxiable", "Proxy", "Locked")
 	}
