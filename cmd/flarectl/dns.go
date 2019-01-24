@@ -108,7 +108,7 @@ func dnsCreateOrUpdate(c *cli.Context) {
 				rr.Content = content
 				rr.TTL = ttl
 				rr.Proxied = proxy
-				err := api.UpdateDNSRecord(zoneID, r.ID, rr)
+				resp, err := api.UpdateDNSRecord(zoneID, r.ID, rr)
 				if err != nil {
 					fmt.Println("Error updating DNS record:", err)
 				}
