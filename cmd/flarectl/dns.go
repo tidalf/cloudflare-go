@@ -127,7 +127,7 @@ func dnsCreateOrUpdate(c *cli.Context) {
 		}
 
 	}
-	if (resp.Result != nil) {
+	if (resp != nil) {
 		output := [][]string{
 			formatDNSRecord(resp.Result),
 		}
